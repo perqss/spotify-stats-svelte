@@ -1,0 +1,23 @@
+{
+  "name": "app",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "@smui/button": "^8.0.0-beta.3",
+    "@smui/card": "^8.0.0-beta.3",
+    "@sveltejs/vite-plugin-svelte": "^5.0.3",
+    "svelte": "^5.20.2",
+    "vite": "^6.2.0"
+  },
+  "dependencies": {
+    "spotify-web-api-js": "^1.5.2",
+    "svelte-material-ui": "^8.0.0-beta.3",
+    "svelte-spa-router": "^4.0.1"
+  }
+}
