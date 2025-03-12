@@ -4,19 +4,17 @@
   import Button from '@smui/button';
   import { spotifyGreen, getLoginUrl, getCodeFromUrl, getTokens } from '../common';
   import { onMount } from 'svelte';
-  import { push } from 'svelte-spa-router';
+  //import { Query } from "@mateothegreat/svelte5-router";
+  import { navigate } from 'svelte-routing';
 
   let loginUrl = "";
-
   onMount(() => {
-    console.log('onmount')
     const code = getCodeFromUrl();
     console.log(code)
 
     const afterLogIn = async () => {
       await getTokens(code);
-      console.log('afterlogin')
-      push("/top-artists");
+      navigate('/top-artists');
     };
 
     const setLoginUrl = async () => {

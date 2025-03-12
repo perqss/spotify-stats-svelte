@@ -1,6 +1,6 @@
 import { mount } from 'svelte'
 import './app.css'
-import App from './pages/Login.svelte'
+import App from './App.svelte';
 import Spotify from 'spotify-web-api-js';
 import { getLocalAccessToken } from './common';
 
