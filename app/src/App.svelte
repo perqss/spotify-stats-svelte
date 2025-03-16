@@ -4,6 +4,7 @@
     import { Router, Link, Route } from "svelte-routing";
     import TopArtists from "./pages/TopArtists.svelte";
     import Menu from "./components/Menu.svelte";
+    import ArtistProfile from "./pages/ArtistProfile.svelte";
 
     let artistTerm = $state("long_term");
 </script>
@@ -25,6 +26,19 @@
                 />
                 <TopArtists 
                     artistTerm={artistTerm}
+                />
+            </div>
+        </Route>
+        <Route
+            path='/artist/:artistId'
+            let:params
+        >
+            <div>
+                <Menu
+                    bind:term={artistTerm}
+                />
+                <ArtistProfile
+                    artistId="{params.artistId}"
                 />
             </div>
         </Route>

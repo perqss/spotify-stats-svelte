@@ -5,7 +5,7 @@
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  background-color: #2f302f;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -24,29 +24,27 @@ a:hover {
   color: #535bf2;
 }
 
-body {
-  margin: 0;
+/* body {
   display: flex;
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
-}
+} */
 
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
 }
 
-.card {
+/* .card {
   padding: 2em;
-}
+} */
 
-#app {
-  max-width: 1280px;
+/* #app {
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
-}
+}  */
 
 button {
   border-radius: 8px;
@@ -89,17 +87,25 @@ button:focus-visible {
 }
 
 .display-inner-container {
-  height: 100%;
-  width: 100%;
   background-color: var(--lighterMainColor);
   margin-top: 60px;
   margin-left: 200px;
 }
 
 :not(.mdc-deprecated-list-item--disabled).mdc-deprecated-list-item.mdc-ripple-upgraded .mdc-deprecated-list-item__ripple::before {
-  background-color: #333633 !important;
+  background-color: #c6d1c6 !important;
 }
 
 :not(.mdc-deprecated-list-item--disabled).mdc-deprecated-list-item.mdc-ripple-upgraded .mdc-deprecated-list-item__ripple::after {
-  background-color: #333633 !important;
+  background-color: #969e96 !important;
+}
+
+.artist-profile-display {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin-left: 200px;
+  background-color: var(--lighterMainColor);
 }

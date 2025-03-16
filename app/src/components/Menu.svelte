@@ -1,6 +1,6 @@
 <script>
     import List, { Item, Graphic, Text } from '@smui/list';
-    import { mainColor, darkerMainColor } from '../common';
+    import { mainColor, darkerMainColor, lighterMainColor } from '../common';
     import { onMount } from 'svelte';
     import TopBar from './TopBar.svelte';
     import { fade } from 'svelte/transition';
@@ -91,7 +91,7 @@
     <TopBar/>
     <div
         class="box"
-        style="--main-color: {darkerMainColor}"
+        style="--main-color: {mainColor}"
     >
         <List>
             {#each menuItems as item, index}

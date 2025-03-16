@@ -24,15 +24,14 @@
         <div
             class="display-inner-container"
         >
-            <LayoutGrid
-                fixedColumnWidth
-            >
+            <LayoutGrid>
                 {#each artists as artist, index}
                     <Cell
-                        spanDevices={{phone: 2, tablet: 2, desktop: 3}}
+
+                        spanDevices={{phone: 6, tablet: 4, desktop: 2}}
                     >
                         <ArtistCard
-                            index={index}
+                            index={index + 1}
                             artistInfo={artist}
                         />
                     </Cell>

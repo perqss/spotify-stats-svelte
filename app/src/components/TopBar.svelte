@@ -7,6 +7,7 @@
     import { getProfile } from "../clients/SpotifyClient";
     import { Spotify, PersonBadge } from "svelte-bootstrap-icons";
     import Button from "@smui/button";
+    import { navigate } from "svelte-routing";
 
     let profileData = $state(null);
 
@@ -23,12 +24,14 @@
         localStorage.setItem('token', undefined);
         localStorage.setItem('refresh_token', undefined);
         localStorage.setItem('token_expiration_timestamp', undefined);
-        goto('/');
+        console.log('xd')
+        navigate('/');
     };
 </script>
 <main>
     <div>
         <TopAppBar
+            variant="static"
             class="app-bar"
             color="primary"
             style="--color: {darkerMainColor}"
@@ -70,6 +73,7 @@
                     <IconButton 
                         class="material-icons" 
                         id="xl-button"
+                        onclick={handleLogout}
                     >
                         logout
                     </IconButton>
