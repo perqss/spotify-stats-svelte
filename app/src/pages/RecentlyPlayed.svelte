@@ -1,20 +1,18 @@
 <script>
-    import { getTopSongs } from "../clients/SpotifyClient";
+    import { getRecentlyPlayed } from "../clients/SpotifyClient";
     import List from '@smui/list';
     import Song from "../components/Song.svelte";
 
-    let { songTerm } = $props();
-    let songsInfo = $state(null);
-
-    const fetchTopSongs = async () => {
-        const response = await getTopSongs(songTerm);
+    const fetchRecentlyPlayed = async () => {
+        const response = await getRecentlyPlayed();
         return response.items;
     };
 
-    $effect(() => {
-        fetchTopSongs().then(response => songsInfo = response);
-    });
+    let songsInfo = $state(null);
 
+    $effect(() => {
+        fetchRecentlyPlayed().then(response => songsInfo = response);
+    });
 </script>
 <main>
     <div
@@ -31,7 +29,7 @@
                     {#each songsInfo as songInfo, index}
                         <Song
                             key={index}
-                            songInfo={songInfo}
+                            songInfo={songInfo.track}
                             index={index + 1}
                             length={songsInfo.length}
                         />

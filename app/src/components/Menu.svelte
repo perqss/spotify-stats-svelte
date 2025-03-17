@@ -5,6 +5,7 @@
     import TopBar from './TopBar.svelte';
     import { fade } from 'svelte/transition';
     import { navigate } from 'svelte-routing';
+    import { _0Circle, _123 } from 'svelte-bootstrap-icons';
 
     let { componentIndex, term = $bindable() } = $props();
     console.log(componentIndex, term)
@@ -20,7 +21,7 @@
     };
 
     const openSubMenu = (index) => {
-        return selectedMenu === index;
+        return [0, 1, 2].includes(index) && selectedMenu === index;
     };
 
     $effect(() => {
@@ -97,6 +98,7 @@
             {#each menuItems as item, index}
                 <Item 
                     onSMUIAction={() => handleClickMenuItem(index)}
+                    selected={selectedMenu === index}
                 >
                     <Graphic
                         class="material-icons"
@@ -114,17 +116,15 @@
                     <div
                         in:fade={{delay: 100}}
                     >
-                        {#if selectedMenu === index}
-                            {#each subMenuItems as subMenuItem}
-                                <Item
-                                    onSMUIAction={() => handleClickSubMenuItem(subMenuItem, index)}
-                                    selected={selectedSubMenu === subMenuItem}
-                                    style="color: white;"
-                                >
-                                    {subMenuItem}
-                                </Item>
-                            {/each}
-                        {/if}
+                        {#each subMenuItems as subMenuItem}
+                            <Item
+                                onSMUIAction={() => handleClickSubMenuItem(subMenuItem, index)}
+                                selected={selectedSubMenu === subMenuItem}
+                                style="color: white;"
+                            >
+                                {subMenuItem}
+                            </Item>
+                        {/each}
                     </div>
                 {/if}
             {/each}

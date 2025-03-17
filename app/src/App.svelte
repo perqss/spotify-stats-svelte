@@ -6,6 +6,8 @@
     import ArtistProfile from "./pages/ArtistProfile.svelte";
     import TopSongs from "./pages/TopSongs.svelte";
     import SongInfo from "./pages/SongInfo.svelte";
+    import RecentlyPlayed from "./pages/RecentlyPlayed.svelte";
+    import "./global.scss"
 
     let artistTerm = $state("long_term");
     let songTerm = $state("long_term");
@@ -68,6 +70,16 @@
                 <SongInfo
                     songId="{params.songId}"
                 />
+            </div>
+        </Route>
+        <Route
+            path='/recently-played'
+        >
+            <div>
+                <Menu
+                    componentIndex={3}
+                />
+                <RecentlyPlayed/>
             </div>
         </Route>
     </Router>

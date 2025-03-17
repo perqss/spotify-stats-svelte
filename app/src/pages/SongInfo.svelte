@@ -7,12 +7,12 @@
         Actions,
         ActionButtons,
     } from '@smui/card';
-    import { mainColor } from '../common';
+    import { getReleaseDateYear, mainColor, parseArtists, grey, spotifyGreen } from '../common';
     import IconButton from '@smui/icon-button';
     import { navigate } from 'svelte-routing';
     import { getTrack } from '../clients/SpotifyClient';
     import { Image } from '@smui/image-list';
-    import Typography from '@smui/typography';
+    import SpotifyPlayButton from '../components/SpotifyPlayButton.svelte';
 
     let { songId } = $props();
     let songInfo = $state(null);
@@ -51,11 +51,35 @@
                     style="margin-left: 1vw;"
                 >
                     <div
-                        class="mdc-typography--headline6"
+                        class="mdc-typography--headline4"
                         style="margin-top: 80px"
                     >
                         {songInfo.name}
                     </div>
+                    <div
+                        class="mdc-typography--headline5"
+                        style="color: {grey};"
+                    >
+                        {songInfo.album.name}
+                    </div>
+                    <div
+                        class="mdc-typography--headline6"
+                        style="color: {grey};"
+                    >
+                        {parseArtists(songInfo.artists)}
+                    </div>
+                    <div
+                        class="mdc-typography--headline6"
+                        style="color: {grey};"
+                    >
+                        {getReleaseDateYear(songInfo.album.release_date)}
+                    </div>
+                    <SpotifyPlayButton 
+                        text="Play on Spotify"
+                        style="margin-top: 10px; --spotify-green: {spotifyGreen};"
+                        href={songInfo.external_urls.spotify}
+                        target="_BLANK"
+                     />
                 </div>
 
             </div>

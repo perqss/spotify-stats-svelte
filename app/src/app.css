@@ -95,11 +95,11 @@ button:focus-visible {
 }
 
 :not(.mdc-deprecated-list-item--disabled).mdc-deprecated-list-item.mdc-ripple-upgraded .mdc-deprecated-list-item__ripple::before {
-  background-color: #c6d1c6 !important;
+  background-color: #c6d1c6;
 }
 
 :not(.mdc-deprecated-list-item--disabled).mdc-deprecated-list-item.mdc-ripple-upgraded .mdc-deprecated-list-item__ripple::after {
-  background-color: #969e96 !important;
+  background-color: #969e96;
 }
 
 .cover-display {

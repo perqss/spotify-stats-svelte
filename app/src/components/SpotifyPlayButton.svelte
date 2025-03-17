@@ -10,7 +10,11 @@
         variant="raised"
         {...restProps}
     >
-        {text}
+        <div
+            class="mdc-typography--headline6"
+        >
+            {text}
+        </div>
     </Button>
 </main>
 
