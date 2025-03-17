@@ -13,18 +13,18 @@
     import SpotifyPlayButton from '../components/SpotifyPlayButton.svelte';
     import { getContext } from 'svelte';
 
-    let { index, artistInfo } = $props();
+    let { index, album } = $props();
     let spotifyPlayerContext = getContext("spotifyPlayerContext");
 
-    const handleClickArtist = () => {
-        navigate(`/artist/${artistInfo.id}`);
+    const handleClickAlbum = () => {
+        navigate(`/album/${album[1].id}`);
     };
 
     const handleClickPlayBtn = (event) => {
         event.stopPropagation();
-        spotifyPlayerContext.artistId = artistInfo.id; 
+        spotifyPlayerContext.albumId = album[1].id;
         spotifyPlayerContext.openBottomBar = true;
-        spotifyPlayerContext.albumId = null;
+        spotifyPlayerContext.artistId = null;
         spotifyPlayerContext.songId = null;
     };
 
@@ -34,17 +34,17 @@
         style="background-color: {mainColor};"
     >
         <PrimaryAction
-            onclick={handleClickArtist}
+            onclick={handleClickAlbum}
         >
             <Media
                 class="card-media-img"
-                style="--url: url({artistInfo.images[0].url})"
+                style="--url: url({album[1].image})"
                 aspectRatio="16x9"
             />
             <Content
                 class="mdc-typography--body2"
             >
-                {`${index}. ${artistInfo.name}`}
+                {`${index}. ${album[0]}`}
             </Content>
         </PrimaryAction>
         <Actions>

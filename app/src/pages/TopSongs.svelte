@@ -30,7 +30,6 @@
                 >
                     {#each songsInfo as songInfo, index}
                         <Song
-                            key={index}
                             songInfo={songInfo}
                             index={index + 1}
                             length={songsInfo.length}

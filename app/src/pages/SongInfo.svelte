@@ -1,12 +1,4 @@
 <script>
-    import Card, {
-        Content,
-        PrimaryAction,
-        Media,
-        MediaContent,    
-        Actions,
-        ActionButtons,
-    } from '@smui/card';
     import { getReleaseDateYear, mainColor, parseArtists, grey, spotifyGreen } from '../common';
     import IconButton from '@smui/icon-button';
     import { navigate } from 'svelte-routing';
@@ -30,15 +22,15 @@
 </script>
 <main>
     <IconButton
-    style="top: 70px; left: 250px"
-    class="material-icons"
-    onclick={() => window.history.back()}
+        style="top: 70px; left: 250px"
+        class="material-icons"
+        onclick={() => window.history.back()}
     >
         arrow_back_ios
     </IconButton>
     {#if songInfo}
         <div
-            class="song-display"
+            class="song-album-display"
         >
             <div
                 style="display: flex; flex-direction: row;"
@@ -86,11 +78,3 @@
         </div>
     {/if}
 </main>
-<style>
-    .song-display {
-        display: flex;
-        flex-direction: column;
-        margin-left: 200px;
-        height: 100vh;
-    }
-</style>

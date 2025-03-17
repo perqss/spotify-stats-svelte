@@ -3,7 +3,9 @@
     import { navigate } from 'svelte-routing';
     import { grey, parseArtists, durationInHrMinSec } from '../common';
     import IconButton from '@smui/icon-button';
+    import { getContext } from 'svelte';
 
+    let spotifyPlayerContext = getContext("spotifyPlayerContext");
     let props = $props();
 
     const handleSecondary = () => {
@@ -12,6 +14,14 @@
         } else {
             return `${parseArtists(props.songInfo.album.artists)} - ${props.songInfo.album.name}`;
         }
+    };
+
+    const handleClickPlayBtn = (event) => {
+        event.stopPropagation();
+        spotifyPlayerContext.songId = props.songInfo.id;
+        spotifyPlayerContext.openBottomBar = true;
+        spotifyPlayerContext.artistId = null;
+        spotifyPlayerContext.albumId = null;
     };
 
     const handleSongClick = () => {
@@ -45,6 +55,7 @@
             <IconButton
                 class="material-icons"
                 style="color: white;"
+                onclick={handleClickPlayBtn}
             >
                 play_circle
             </IconButton>

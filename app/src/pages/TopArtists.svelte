@@ -12,7 +12,6 @@
     };
 
     $effect(() => {
-        console.log(artistTerm)
         fetchTopArtists(artistTerm).then(response => artists = response);
     });
     

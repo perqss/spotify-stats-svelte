@@ -8,8 +8,7 @@
     import { _0Circle, _123 } from 'svelte-bootstrap-icons';
 
     let { componentIndex, term = $bindable() } = $props();
-    console.log(componentIndex, term)
-
+    
     let selectedMenu = $state(componentIndex);
     let selectedSubMenu = $state('All Time');
     const menuItems = ['Top Artists', 'Top Songs', 'Top Albums', 'Recently Played', 'Music Taste'];

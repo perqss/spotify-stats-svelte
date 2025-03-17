@@ -7,10 +7,27 @@
     import TopSongs from "./pages/TopSongs.svelte";
     import SongInfo from "./pages/SongInfo.svelte";
     import RecentlyPlayed from "./pages/RecentlyPlayed.svelte";
+    import TopAlbums from "./pages/TopAlbums.svelte";
+    import AlbumInfo from "./pages/AlbumInfo.svelte";
+    import BottomBar from "./components/BottomBar.svelte";
+    import { setContext } from "svelte";
     import "./global.scss"
 
     let artistTerm = $state("long_term");
     let songTerm = $state("long_term");
+    let albumTerm = $state("long_term");
+    let artistId = $state(null);
+    let albumId = $state(null);
+    let songId = $state(null);
+    let openBottomBar = $state(false);
+
+    setContext("spotifyPlayerContext", {
+        set openBottomBar(value) {openBottomBar = value},
+        set artistId(value) {artistId = value},
+        set albumId(value) {albumId = value},
+        set songId(value) {songId = value}
+    });
+
 </script>
 
 <main>
@@ -82,5 +99,37 @@
                 <RecentlyPlayed/>
             </div>
         </Route>
+        <Route
+            path='/top-albums'
+        >
+            <div>
+                <Menu
+                    componentIndex={2}
+                    bind:term={albumTerm}
+                />
+                <TopAlbums
+                    albumTerm={albumTerm}
+                />
+            </div>
+        </Route>
+        <Route
+            path='/album/:albumId'
+            let:params
+        >
+            <div>
+                <Menu
+                    bind:term={albumTerm}
+                />
+                <AlbumInfo
+                    albumId="{params.albumId}"
+                />
+            </div>
+        </Route>
     </Router>
+    <BottomBar
+        artistId={artistId}
+        albumId={albumId}
+        songId={songId}
+        open={openBottomBar}
+    />
 </main>

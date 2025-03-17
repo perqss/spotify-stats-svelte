@@ -103,9 +103,21 @@ button:focus-visible {
 }
 
 .cover-display {
-  width: 30%;
-  height: 100%;
+  width: 25vw;
+  height: 55vh;
   margin-top: 80px;
   margin-left: 120px;
   border-radius: 0;
+}
+
+.card-media-img {
+  background-image: var(--url);
+  height: 200px;
+}
+
+.song-album-display {
+  display: flex;
+  flex-direction: column;
+  margin-left: 200px;
+  height: 100vh;
 }
