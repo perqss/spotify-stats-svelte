@@ -87,6 +87,8 @@ button:focus-visible {
 }
 
 .display-inner-container {
+  height: 100%;
+  width: 100%;
   background-color: var(--lighterMainColor);
   margin-top: 60px;
   margin-left: 200px;
@@ -100,12 +102,10 @@ button:focus-visible {
   background-color: #969e96 !important;
 }
 
-.artist-profile-display {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  margin-left: 200px;
-  background-color: var(--lighterMainColor);
+.cover-display {
+  width: 30%;
+  height: 100%;
+  margin-top: 80px;
+  margin-left: 120px;
+  border-radius: 0;
 }

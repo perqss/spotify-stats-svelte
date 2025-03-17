@@ -10,11 +10,11 @@
     import { mainColor } from '../common';
     import IconButton from '@smui/icon-button';
     import { navigate } from 'svelte-routing';
+    import SpotifyPlayButton from '../components/SpotifyPlayButton.svelte';
 
     let { index, artistInfo } = $props();
 
     const handleClickArtist = () => {
-        console.log(artistInfo.id)
         navigate(`/artist/${artistInfo.id}`);
     }
 
@@ -33,7 +33,6 @@
             />
             <Content
                 class="mdc-typography--body2"
-                
             >
                 {`${index}. ${artistInfo.name}`}
             </Content>

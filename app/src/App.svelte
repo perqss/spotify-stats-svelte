@@ -1,12 +1,14 @@
 <script>
     import Login from "./pages/Login.svelte";
-    //import { Router } from "@mateothegreat/svelte5-router";
     import { Router, Link, Route } from "svelte-routing";
     import TopArtists from "./pages/TopArtists.svelte";
     import Menu from "./components/Menu.svelte";
     import ArtistProfile from "./pages/ArtistProfile.svelte";
+    import TopSongs from "./pages/TopSongs.svelte";
+    import SongInfo from "./pages/SongInfo.svelte";
 
     let artistTerm = $state("long_term");
+    let songTerm = $state("long_term");
 </script>
 
 <main>
@@ -39,6 +41,32 @@
                 />
                 <ArtistProfile
                     artistId="{params.artistId}"
+                />
+            </div>
+        </Route>
+        <Route
+            path='/top-songs'
+        >
+            <div>
+                <Menu 
+                    componentIndex={1}
+                    bind:term={songTerm}
+                />
+                <TopSongs 
+                    songTerm={songTerm}
+                />
+            </div>
+        </Route>
+        <Route
+            path='/song/:songId'
+            let:params
+        >
+            <div>
+                <Menu
+                    bind:term={songTerm}
+                />
+                <SongInfo
+                    songId="{params.songId}"
                 />
             </div>
         </Route>

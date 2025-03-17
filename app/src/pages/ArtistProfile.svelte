@@ -13,6 +13,7 @@
     import IconButton from "@smui/icon-button";
     import { navigate } from "svelte-routing";
     import SpotifyPlayButton from '../components/SpotifyPlayButton.svelte';
+    import { Image } from '@smui/image-list';
 
     let { artistId } = $props();
     let artistInfo = $state(null);
@@ -40,13 +41,10 @@
         <div
             class="artist-profile-display"
         >
-            <Card>
-                <Media 
-                    class="card-media-img"
-                    style="--url: url({artistInfo.images[0].url})"
-                    aspectRatio="16x9"
-                />
-            </Card>
+            <Image
+                src={artistInfo.images[0].url}
+                style="border-radius: 50%; width: 30%; height: 60%;"
+            />
             <Paper
                 style="background-color: {mainColor}; padding: 10px; margin: 10px; color: white;"
             >
@@ -81,9 +79,12 @@
     {/if}
 </main>
 <style>
-    * :global(.card-media-img) {
-        background-image: var(--url);
-        width: 25vw;
-        height: 55vh;
+    .artist-profile-display {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin-left: 200px;
     }
 </style>

@@ -20,6 +20,21 @@ export const LOAD_AT_ONCE_LIMIT = 99;
 export const OFFSET = 49;
 export const githubUrl = 'https://github.com/perqss/spotify-stats-app';
 
+export const durationInHrMinSec = (duration) => {
+    let milliseconds = Math.floor((duration % 1000) / 100),
+    seconds = Math.floor((duration / 1000) % 60),
+    minutes = Math.floor((duration / (1000 * 60)) % 60),
+    hours = Math.floor((duration / (1000 * 60 * 60)) % 24);
+
+    hours = (hours < 10) ? '0' + hours : hours;
+    minutes = (minutes < 10) ? '0' + minutes : minutes;
+    seconds = (seconds < 10) ? '0' + seconds : seconds;
+
+    let result;
+    hours === '00' ? result = minutes + ':' + seconds : result = hours + ':' + minutes + ':' + seconds;
+    return result;
+};
+
 export const getTokenFromUrl = () => {
     return window.location.hash
         .substring(1)

@@ -8,8 +8,12 @@
     import { Spotify, PersonBadge } from "svelte-bootstrap-icons";
     import Button from "@smui/button";
     import { navigate } from "svelte-routing";
+    import Menu from '@smui/menu';
+    import List, { Item, Separator, Text, Graphic } from '@smui/list';
+    import { Image} from '@smui/image-list';
 
     let profileData = $state(null);
+    let menuRef;
 
     onMount(() => {
         const getProfileWrapper = async () => {
@@ -24,7 +28,6 @@
         localStorage.setItem('token', undefined);
         localStorage.setItem('refresh_token', undefined);
         localStorage.setItem('token_expiration_timestamp', undefined);
-        console.log('xd')
         navigate('/');
     };
 </script>
@@ -60,8 +63,50 @@
                     <IconButton 
                         class="material-icons" 
                         id="xl-button"
+                        onclick={() => menuRef.setOpen(true)}
                     >
-                        account_circle
+                        <Image
+                            src={profileData?.images[1].url}
+                            style="border-radius: 50%; width: 80%; height: 80%;"
+                        />
+                        <Menu
+                            bind:this={menuRef}
+                            anchorCorner="BOTTOM_LEFT"
+                            style="background-color: {mainColor};"
+                        >
+                        <List
+                            style="color: white;"
+                        >
+                            <Item 
+                                nonInteractive
+                            >
+                                <Text>
+                                    {profileData?.display_name}
+                                </Text>
+                            </Item>
+                            <Item 
+                                nonInteractive
+                            >
+                                <Text>
+                                    {profileData?.followers.total} followers
+                                </Text>
+                            </Item>
+                            <Separator
+                                style="background-color: white;"
+                            />
+                            <a
+                                href={profileData?.external_urls.spotify}
+                                target="_BLANK"
+                                style="color: inherit;"
+                            >
+                                <Item>
+                                    <Text>
+                                        Go to your Spotify page
+                                    </Text>
+                                </Item>
+                            </a>
+                        </List>
+                    </Menu>
                     </IconButton>
                     <Tooltip
                         xPos="start"
