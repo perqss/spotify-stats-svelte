@@ -15,7 +15,8 @@ export const scopes = [
   ];
 export const clientId = '9c88dffd7e78491caff363351d140da0';
 export const authEndPoint = 'https://accounts.spotify.com/authorize';
-export const frontendUrl = 'http://127.0.0.1:5173/';
+let frontendUrl = '';
+import.meta.env.DEV ? frontendUrl = 'http://127.0.0.1:5173/' : frontendUrl = 'http://127.0.0.1:4173/';
 export const LOAD_AT_ONCE_LIMIT = 99;
 export const OFFSET = 49;
 export const githubUrl = 'https://github.com/perqss/spotify-stats-app';

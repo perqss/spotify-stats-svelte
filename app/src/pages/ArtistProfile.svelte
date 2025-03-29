@@ -43,7 +43,7 @@
         >
             <Image
                 src={artistInfo.images[0].url}
-                style="border-radius: 50%; width: 30%; height: 60%;"
+                style="border-radius: 50%; width: 25vw; height: 55vh;"
             />
             <Paper
                 style="background-color: {mainColor}; padding: 10px; margin: 10px; color: white;"

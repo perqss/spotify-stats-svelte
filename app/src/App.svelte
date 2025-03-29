@@ -41,10 +41,10 @@
             path='/top-artists'
         >
             <div>
-                <Menu
+                <!-- <Menu
                     componentIndex={0}
                     bind:term={artistTerm}
-                />
+                /> -->
                 <TopArtists 
                     artistTerm={artistTerm}
                 />

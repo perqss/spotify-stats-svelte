@@ -13,7 +13,7 @@
     import SpotifyPlayButton from '../components/SpotifyPlayButton.svelte';
     import { getContext } from 'svelte';
 
-    let { index, artistInfo } = $props();
+    let { index, artistInfo, className } = $props();
     let spotifyPlayerContext = getContext("spotifyPlayerContext");
 
     const handleClickArtist = () => {
@@ -32,6 +32,7 @@
 <main>
     <Card
         style="background-color: {mainColor};"
+        class={className}
     >
         <PrimaryAction
             onclick={handleClickArtist}
