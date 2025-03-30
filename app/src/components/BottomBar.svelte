@@ -32,7 +32,7 @@
                 frameborder="0"
                 allowfullscreen=""
                 allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
-                oading="lazy"
+                loading="lazy"
             >
             </iframe>
             <IconButton

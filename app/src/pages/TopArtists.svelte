@@ -35,44 +35,17 @@
         <div
             class="display-inner-container"
         >
-            <!-- <Button
-                variant="raised"
-                onclick={handleClickChangeArtist}
-            >
-                Change artist
-            </Button> -->
-            <!-- <LayoutGrid> -->
+            <div class="grid-container">
                 {#each artists as artist, index (artist.name)}
-                    <!-- <Cell
-                        spanDevices={{phone: 6, tablet: 4, desktop: 2}}
-                    > -->
+                    <div class="grid-item">
                         <ArtistCardNoMui
                             className={assignId(artists, index)}
                             index={index + 1}
                             artistInfo={artist}
                         />
-                        <!-- <ArtistCard
-                            className={assignId(artists, index)}
-                            index={index + 1}
-                            artistInfo={artist}
-                        /> -->
-                        <!-- <div>   
-                            <img
-                                src={artist.images[0].url}
-                                alt={artist.name}
-                                style="height: 100px"
-                        />
-                        
-                        <button
-                            class={assignId(artists, index)}
-                        >
-                            {artist.name} - {artist.popularity}
-                        </button>
-                        </div> -->
-
-                    <!-- </Cell> -->
+                    </div>
                 {/each}
-            <!-- </LayoutGrid> -->
+            </div>
         </div>
     </div>
 </div>

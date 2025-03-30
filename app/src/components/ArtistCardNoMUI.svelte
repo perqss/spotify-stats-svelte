@@ -21,14 +21,12 @@
 </script>
 
 <div class={className}>
-    <!-- svelte-ignore a11y_click_events_have_key_events -->
-    <!-- svelte-ignore a11y_no_static_element_interactions -->
     <div class="artist-card" onclick={handleClickArtist}>
         <img class="artist-image" src={artistInfo.images[0].url} alt={artistInfo.name} />
         <div class="artist-info">
             <p class="artist-name">{`${index}. ${artistInfo.name}`}</p>
         </div>
-        <button class="material-icons" style="background-color: inherit;" onClick={handleClickPlayBtn}>
+        <button class="material-icons" style="background-color: inherit;" onclick={handleClickPlayBtn}>
             <Icon>play_circle</Icon>
         </button>
     </div>

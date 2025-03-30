@@ -11,7 +11,6 @@
     import AlbumInfo from "./pages/AlbumInfo.svelte";
     import BottomBar from "./components/BottomBar.svelte";
     import { setContext } from "svelte";
-    import "./global.scss"
 
     let artistTerm = $state("long_term");
     let songTerm = $state("long_term");
@@ -41,10 +40,10 @@
             path='/top-artists'
         >
             <div>
-                <!-- <Menu
+                <Menu
                     componentIndex={0}
                     bind:term={artistTerm}
-                /> -->
+                />
                 <TopArtists 
                     artistTerm={artistTerm}
                 />
@@ -130,6 +129,6 @@
         artistId={artistId}
         albumId={albumId}
         songId={songId}
-        open={openBottomBar}
+        bind:open={openBottomBar}
     />
 </main>
