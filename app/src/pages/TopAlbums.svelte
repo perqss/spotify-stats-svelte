@@ -1,6 +1,5 @@
 <script>
     import { getTopSongs } from "../clients/SpotifyClient";
-    import LayoutGrid, { Cell } from "@smui/layout-grid";
     import AlbumCard from "../components/AlbumCard.svelte";
 
     let { albumTerm } = $props();

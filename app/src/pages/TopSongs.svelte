@@ -1,6 +1,5 @@
 <script>
     import { getTopSongs } from "../clients/SpotifyClient";
-    import List from '@smui/list';
     import Song from "../components/Song.svelte";
 
     let { songTerm } = $props();

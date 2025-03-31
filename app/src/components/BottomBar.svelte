@@ -1,5 +1,4 @@
 <script>
-    import IconButton from "@smui/icon-button";
 
     let { songId, artistId, albumId, open = $bindable() } = $props();
     

@@ -1,8 +1,6 @@
 <script>
-    import List, { Item, Graphic, Text, Separator, PrimaryText, SecondaryText, Meta } from '@smui/list';
     import { navigate } from 'svelte-routing';
     import { grey, parseArtists, durationInHrMinSec } from '../common';
-    import IconButton from '@smui/icon-button';
     import { getContext } from 'svelte';
 
     let spotifyPlayerContext = getContext("spotifyPlayerContext");

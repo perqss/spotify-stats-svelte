@@ -1,19 +1,8 @@
 <script>
-    import Card, {
-        Content,
-        PrimaryAction,
-        Media,
-        MediaContent,    
-        Actions,
-        ActionButtons,
-    } from '@smui/card';
     import { lighterMainColor, mainColor, spotifyGreen } from "../common";
     import { getArtist } from "../clients/SpotifyClient";
-    import Paper from '@smui/paper';
-    import IconButton from "@smui/icon-button";
     import { navigate } from "svelte-routing";
     import SpotifyPlayButton from '../components/SpotifyPlayButton.svelte';
-    import { Image } from '@smui/image-list';
 
     let { artistId } = $props();
     let artistInfo = $state(null);

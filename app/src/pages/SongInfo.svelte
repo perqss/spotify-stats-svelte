@@ -1,9 +1,7 @@
 <script>
     import { getReleaseDateYear, mainColor, parseArtists, grey, spotifyGreen } from '../common';
-    import IconButton from '@smui/icon-button';
     import { navigate } from 'svelte-routing';
     import { getTrack } from '../clients/SpotifyClient';
-    import { Image } from '@smui/image-list';
     import SpotifyPlayButton from '../components/SpotifyPlayButton.svelte';
 
     let { songId } = $props();

@@ -1,9 +1,7 @@
 <script>
     import { getTopArtists } from "../clients/SpotifyClient";
-    import LayoutGrid, { Cell } from '@smui/layout-grid';
-    import ArtistCard from "../components/ArtistCard.svelte";
+    //import ArtistCard from "../components/ArtistCard.svelte";
     import ArtistCardNoMui from "../components/ArtistCardNoMUI.svelte";
-    import Button from "@smui/button";
 
     let artists = $state(null);
     let { artistTerm } = $props();

@@ -28,7 +28,10 @@
   <header class="App-header">
     <img src={logo} class="logo" alt="logo" />
     {#if loginUrl} 
-        <a href={loginUrl}>
+        <a 
+          href={loginUrl}
+          class="login-button"
+        >
             Log in with Spotify
         </a>
     {/if}
@@ -70,6 +73,28 @@
     to {
       transform: rotate(360deg);
     }
+}
+
+.login-button {
+    border-radius: 8px;
+    border: 1px solid transparent;
+    padding: 0.6em 1.2em;
+    font-size: 1em;
+    font-weight: 500;
+    font-family: inherit;
+    background-color: #1a1a1a;
+    cursor: pointer;
+    transition: border-color 0.25s;
+    color: white;
+}
+
+.login-button:hover {
+    border-color: #666666;
+    color: white;
+}
+.login-button:focus,
+.login-button:focus-visible {
+    outline: 4px auto -webkit-focus-ring-color;
 }
 
 </style>

@@ -1,14 +1,5 @@
 <script>
-    import Card, {
-        Content,
-        PrimaryAction,
-        Media,
-        MediaContent,    
-        Actions,
-        ActionButtons,
-    } from '@smui/card';
     import { mainColor } from '../common';
-    import IconButton from '@smui/icon-button';
     import { navigate } from 'svelte-routing';
     import SpotifyPlayButton from '../components/SpotifyPlayButton.svelte';
     import { getContext } from 'svelte';

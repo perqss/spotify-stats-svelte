@@ -1,5 +1,4 @@
 <script>
-    import Button from '@smui/button'; 
 
     let { text, ...restProps } = $props();
 </script>

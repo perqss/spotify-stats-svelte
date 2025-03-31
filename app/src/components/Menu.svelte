@@ -1,5 +1,4 @@
 <script>
-    import List, { Item, Graphic, Text } from '@smui/list';
     import { mainColor, darkerMainColor, lighterMainColor } from '../common';
     import { onMount } from 'svelte';
     import TopBar from './TopBar.svelte';
@@ -63,6 +62,8 @@
     <TopBar/>
     <aside class="sidebar">
         {#each menuItems as item, index}
+            <!-- svelte-ignore a11y_click_events_have_key_events -->
+            <!-- svelte-ignore a11y_no_static_element_interactions -->
           <div
             class="menu-item {selectedMenu === index ? 'selected-menu' : ''}"
             onclick={() => handleClickMenuItem(index)}
@@ -74,6 +75,8 @@
           {#if openSubMenu(index)}
             <div class="submenu">
               {#each subMenuItems as subItem}
+                <!-- svelte-ignore a11y_click_events_have_key_events -->
+                <!-- svelte-ignore a11y_no_static_element_interactions -->
                 <div
                   class="submenu-item {selectedSubMenu === subItem ? 'selected-submenu' : ''}"
                   onclick={() => handleClickSubMenuItem(subItem, index)}

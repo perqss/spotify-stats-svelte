@@ -4,9 +4,6 @@
     import Song from "../components/Song.svelte";
     import { getReleaseDateYear, grey, lighterMainColor, parseArtists, spotifyGreen } from "../common";
     import { getAlbum } from "../clients/SpotifyClient";
-    import { Image } from '@smui/image-list';
-    import IconButton from "@smui/icon-button";
-    import List from "@smui/list";
 
     const { albumId } = $props();
     let albumInfo = $state(null);

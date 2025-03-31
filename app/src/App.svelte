@@ -58,7 +58,7 @@
                     bind:term={artistTerm}
                 />
                 <ArtistProfile
-                    artistId="{params.artistId}"
+                    artistId={params.artistId}
                 />
             </div>
         </Route>
@@ -84,7 +84,7 @@
                     bind:term={songTerm}
                 />
                 <SongInfo
-                    songId="{params.songId}"
+                    songId={params.songId}
                 />
             </div>
         </Route>
@@ -120,7 +120,7 @@
                     bind:term={albumTerm}
                 />
                 <AlbumInfo
-                    albumId="{params.albumId}"
+                    albumId={params.albumId}
                 />
             </div>
         </Route>

@@ -2,7 +2,6 @@
     import { onMount } from 'svelte';
     import { spotifyGreen, mainColor, darkerMainColor, githubUrl } from '../common';
     import { getProfile } from '../clients/SpotifyClient';
-    import { Spotify } from 'svelte-bootstrap-icons';
     import { navigate } from 'svelte-routing';
   
     let profileData = $state(null);
@@ -54,6 +53,8 @@
 
         {#if profileData}
         <div class="profile-wrapper">
+            <!-- svelte-ignore a11y_no_noninteractive_element_interactions -->
+            <!-- svelte-ignore a11y_click_events_have_key_events -->
             <img
                 src={profileData.images[1].url}
                 alt="Profile"
