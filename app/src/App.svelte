@@ -10,6 +10,7 @@
     import TopAlbums from "./pages/TopAlbums.svelte";
     import AlbumInfo from "./pages/AlbumInfo.svelte";
     import BottomBar from "./components/BottomBar.svelte";
+    import FollowedArtists from "./pages/FollowedArtists.svelte";
     import { setContext } from "svelte";
 
     let artistTerm = $state("long_term");
@@ -122,6 +123,16 @@
                 <AlbumInfo
                     albumId={params.albumId}
                 />
+            </div>
+        </Route>
+        <Route
+            path='/followed-artists'
+        >
+            <div>
+                <Menu
+                    componentIndex={5}
+                />
+                <FollowedArtists/>
             </div>
         </Route>
     </Router>

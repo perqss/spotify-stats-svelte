@@ -1,8 +1,11 @@
 <script>
     import { navigate } from "svelte-routing";
     import { getContext } from 'svelte';
+    import { spotifyGreen } from "../common";
+    import { followArtists, unfollowArtists } from "../clients/SpotifyClient";
+    console.log('render')
 
-    let { index, artistInfo, className } = $props();
+    let { className, artistInfo, handleClickFollowBtnParent } = $props();
     let spotifyPlayerContext = getContext("spotifyPlayerContext");
 
     const handleClickArtist = () => {
@@ -17,6 +20,11 @@
         spotifyPlayerContext.songId = null;
     };
 
+    const handleClickFollowBtn = async (event) => {
+      event.stopPropagation();
+      await handleClickFollowBtnParent();
+    }
+
 </script>
 
 <div class={className}>
@@ -25,11 +33,26 @@
     <div class="artist-card" onclick={handleClickArtist}>
         <img class="artist-image" src={artistInfo.images[0].url} alt={artistInfo.name} />
         <div class="artist-info">
-            <p class="artist-name">{`${index}. ${artistInfo.name}`}</p>
+            <p class="artist-name">{`${artistInfo.name}`}</p>
         </div>
-        <button class="material-icons" style="background-color: inherit;" onclick={handleClickPlayBtn}>
+        <div>
+          <button 
+            class="material-icons" 
+            style="background-color: inherit;" 
+            onclick={handleClickPlayBtn} 
+            title="Play"
+          >
             play_circle
-        </button>
+          </button>
+          <button 
+            class="material-icons follow-button" 
+            style="background-color: inherit; color: {artistInfo.isFollowing ? spotifyGreen : 'white'}" 
+            onclick={handleClickFollowBtn}
+            title="Follow"
+          >
+            favorite
+          </button>
+        </div>
     </div>
 </div>
 

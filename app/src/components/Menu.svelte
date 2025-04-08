@@ -8,9 +8,9 @@
     let { componentIndex, term = $bindable() } = $props();
     let selectedMenu = $state(componentIndex);
     let selectedSubMenu = $state('All Time');
-    const menuItems = ['Top Artists', 'Top Songs', 'Top Albums', 'Recently Played', 'Music Taste'];
+    const menuItems = ['Top Artists', 'Top Songs', 'Top Albums', 'Recently Played', 'Music Taste', 'Followed Artists'];
     const subMenuItems = ['All Time', 'Last 6 Months', 'Last 4 Weeks'];
-    const menuIcons = ['mic', 'music_note', 'album', 'history', 'query_stats'];
+    const menuIcons = ['mic', 'music_note', 'album', 'history', 'query_stats', 'favorite_border'];
 
     const handleClickMenuItem = (index) => {
         selectedMenu = index;
@@ -36,6 +36,9 @@
                 break;
             case 4:
                 navigate('/music-taste');
+                break;
+            case 5:
+                navigate('/followed-artists');
                 break;
         }
     });
@@ -65,7 +68,7 @@
             <!-- svelte-ignore a11y_click_events_have_key_events -->
             <!-- svelte-ignore a11y_no_static_element_interactions -->
           <div
-            class="menu-item {selectedMenu === index ? 'selected-menu' : ''}"
+            class="menu-{index} menu-item {selectedMenu === index ? 'selected-menu' : ''}"
             onclick={() => handleClickMenuItem(index)}
           >
             <span class="material-icons icon">{menuIcons[index]}</span>

@@ -1,22 +1,20 @@
 <script>
-    import { getTopArtists, isFollowingArtists, followArtists, unfollowArtists } from "../clients/SpotifyClient";
-    //import ArtistCard from "../components/ArtistCard.svelte";
+    import { getFollowedArtists, isFollowingArtists, unfollowArtists } from "../clients/SpotifyClient";
     import ArtistCardNoMui from "../components/ArtistCardNoMUI.svelte";
 
     let artists = $state(null);
-    let { artistTerm } = $props();
 
-    const fetchTopArtists = async (term) => {
-        const response = await getTopArtists(term);
-        return response.items;
+    const fetchFollowedArtists = async () => {
+        const response = await getFollowedArtists();
+        return response.artists.items;
     };
 
     $effect(() => {
         const fetchArtistsWrapper = async () => {
-            const topArtists = await fetchTopArtists(artistTerm);
-            const artistIds = topArtists.map((artist) => artist.id);
+            const followedArtists = await fetchFollowedArtists();
+            const artistIds = followedArtists.map((artist) => artist.id);
             const followed = await isFollowingArtists(artistIds);
-            artists = topArtists.map((artist, index) => {
+            artists = followedArtists.map((artist, index) => {
                 return {
                     ...artist,
                     isFollowing: followed[index],
@@ -36,14 +34,10 @@
     };
 
     const handleClickFollowBtnParent = async (index) => {
-      if (!artists[index].isFollowing) {
-        await followArtists([artists[index].id]);
-      } else {
         await unfollowArtists([artists[index].id]);
-      }
-      artists[index].isFollowing = !artists[index].isFollowing;
+        artists.splice(index, 1);
     };
-
+    
 </script>
 <div>
     <div
