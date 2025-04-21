@@ -55,6 +55,22 @@ export const parseArtists = (artistsInfo) => {
     return artists.join(', ');
 };
 
+export const assignArtistId = (artists, index) => {
+    if (artists.length - 1 === index) {
+        return "last-artist";
+    } else if (index === 0) {
+        return "first-artist";
+    }
+};
+
+export const assignSongId = (songs, index) => {
+    if (songs.length - 1 === index) {
+        return "last-song";
+    } else if (index === 0) {
+        return "first-song";
+    }
+};
+
 export const getReleaseDateYear = (releaseDate) => {
     return releaseDate.substring(0, 4);
   };

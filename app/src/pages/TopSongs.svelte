@@ -1,9 +1,10 @@
 <script>
     import { getTopSongs } from "../clients/SpotifyClient";
     import Song from "../components/Song.svelte";
+    import { assignSongId } from "../common";
 
     let { songTerm } = $props();
-    let songsInfo = $state(null);
+    let songs = $state(null);
 
     const fetchTopSongs = async () => {
         const response = await getTopSongs(songTerm);
@@ -11,7 +12,7 @@
     };
 
     $effect(() => {
-        fetchTopSongs().then(response => songsInfo = response);
+        fetchTopSongs().then(response => songs = response);
     });
 
 </script>
@@ -22,20 +23,16 @@
         <div
             class="display-inner-container"
         >
-            {#if songsInfo}
-                <List
-                    twoLine
-                    avatarList
-                >
-                    {#each songsInfo as songInfo, index}
-                        <Song
-                            songInfo={songInfo}
-                            index={index + 1}
-                            length={songsInfo.length}
-                        />
-                    {/each}
-                </List>
-            {/if}
+            <div class="song-container">
+                {#each songs as song, index (song.id)}
+                    <div class="song-index">{index + 1}.</div>
+                    <Song
+                        className={assignSongId(songs, index)}
+                        songInfo={song}
+                        length={songs.length}
+                    />
+                {/each}
+        </div>
         </div>
     </div>
 </main>

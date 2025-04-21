@@ -18,86 +18,110 @@
     });
 </script>
 <main>
-    <IconButton
-        style="top: 70px; left: 250px"
-        class="material-icons"
+    <button 
+        class="back-button material-icons" 
         onclick={() => window.history.back()}
     >
         arrow_back_ios
-    </IconButton>
+    </button>
+
     {#if albumInfo}
-    <div
-        class="song-album-display"
-    >
-        <div
-            style="display: flex; flex-direction: row;"
-        >
-            <Image
+    <div class="album-display">
+        <div class="album-header">
+            <img 
                 class="cover-display"
                 src={albumInfo.images[1].url}
+                alt="Album Cover"
             />
-            <div
-                style="margin-left: 1vw;"
-            >
-                <div
-                    class="mdc-typography--headline4"
-                    style="margin-top: 80px"
-                >
+
+            <div class="song-album-info">
+                <div class="album-title">
                     {albumInfo.name}
                 </div>
-                <div
-                    class="mdc-typography--headline5"
-                    style="color: {grey};"
-                >
+                <div class="album-artist">
                     {parseArtists(albumInfo.artists)}
                 </div>
-                <div
-                    class="mdc-typography--headline6"
-                    style="color: {grey};"
-                >
+                <div class="album-label">
                     {albumInfo.label}
                 </div>
-                <div
-                    class="mdc-typography--headline6"
-                    style="color: {grey};"
-                >
-                    {getReleaseDateYear(albumInfo.release_date)}
-                </div>
                 {#each albumInfo.genres as genre}
-                    <div
-                        class="mdc-typography--headline6"
-                        style="color: {grey};"
-                    >
+                    <div class="album-genre">
                         {genre}
                     </div>
                 {/each}
-                <SpotifyPlayButton 
+                <div class="album-year">
+                    {getReleaseDateYear(albumInfo.release_date)}
+                </div>
+                <SpotifyPlayButton
                     text="Play on Spotify"
-                    style="margin-top: 10px; --spotify-green: {spotifyGreen};"
                     href={albumInfo.external_urls.spotify}
-                    target="_BLANK"
+                    target="_blank"
                 />
             </div>
         </div>
-        <div
-            class="mdc-typography--headline5"
-            style="margin: 10px;"
-        >
+
+        <div class="tracks-header">
             Album tracks
         </div>
-        <List
-            twoLine
-            avatarList
-        >
+
+        <div class="tracks-list">
             {#each albumInfo.tracks.items as song, index}
+                <div class="song-index">{index + 1}.</div>
                 <Song
                     songInfo={song}
-                    index={index + 1}
                     length={albumInfo.tracks.items.length}
                     albumInfo={albumInfo}
                 />
             {/each}
-        </List>
+        </div>
+
     </div>
     {/if}
 </main>
+
+<style>
+
+.album-display {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 200px;
+    padding: 20px;
+}
+
+.album-header {
+    display: flex;
+    margin-top: 60px;
+}
+
+.album-title {
+    font-size: 2rem;
+    margin-top: 80px;
+}
+
+.album-artist, .album-label, .album-genre {
+    font-size: 1.2rem;
+    margin-top: 6px;
+}
+
+.album-year {
+    font-size: 1.2rem;
+    margin-top: 6px;
+    margin-bottom: 20px;
+}
+
+.tracks-header {
+    margin: 20px 0 10px 0;
+    font-size: 1.5rem;
+    color: white;
+    font-weight: bold;
+}
+
+.tracks-list {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+</style>

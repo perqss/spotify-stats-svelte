@@ -19,60 +19,84 @@
     });
 </script>
 <main>
-    <IconButton
-        style="top: 70px; left: 250px"
-        class="material-icons"
+    <button 
+        class="back-button material-icons" 
         onclick={() => window.history.back()}
     >
         arrow_back_ios
-    </IconButton>
+    </button>
+
     {#if songInfo}
-        <div
-            class="song-album-display"
-        >
-            <div
-                style="display: flex; flex-direction: row;"
-            >
-                <Image
+        <div class="song-display">
+            <div class="song-content-row">
+                <img 
                     class="cover-display"
                     src={songInfo.album.images[0].url}
+                    alt="Album cover"
                 />
-                <div
-                    style="margin-left: 1vw;"
-                >
-                    <div
-                        class="mdc-typography--headline4"
-                        style="margin-top: 80px"
-                    >
+                <div class="song-details">
+                    <div class="song-name">
                         {songInfo.name}
                     </div>
-                    <div
-                        class="mdc-typography--headline5"
-                        style="color: {grey};"
-                    >
+                    <div class="album-name">
                         {songInfo.album.name}
                     </div>
-                    <div
-                        class="mdc-typography--headline6"
-                        style="color: {grey};"
-                    >
+                    <div class="artist-names">
                         {parseArtists(songInfo.artists)}
                     </div>
-                    <div
-                        class="mdc-typography--headline6"
-                        style="color: {grey};"
-                    >
+                    <div class="release-year">
                         {getReleaseDateYear(songInfo.album.release_date)}
                     </div>
                     <SpotifyPlayButton 
                         text="Play on Spotify"
-                        style="margin-top: 10px; --spotify-green: {spotifyGreen};"
                         href={songInfo.external_urls.spotify}
                         target="_BLANK"
-                     />
+                    />
                 </div>
-
             </div>
         </div>
     {/if}
 </main>
+
+<style>
+
+.song-display {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin-left: 200px;
+}
+
+.song-content-row {
+    display: flex;
+    flex-direction: row;
+}
+
+
+.song-details {
+    margin-left: 20px;
+    color: white;
+}
+
+.song-name {
+    font-size: 2rem;
+    margin-top: 80px;
+}
+
+.album-name {
+    font-size: 1.5rem;
+    margin-top: 8px;
+}
+
+.artist-names {
+    font-size: 1.2rem;
+    margin-top: 6px;
+}
+
+.release-year {
+    font-size: 1.2rem;
+    margin-top: 6px;
+    margin-bottom: 20px;
+}
+</style>

@@ -1,30 +1,35 @@
 <script>
+    import { spotifyGreen } from "../common";
 
     let { text, ...restProps } = $props();
+
 </script>
 
 <main>
-    <Button 
+    <a 
         class="spotify-button"
-        variant="raised"
+        style="--spotify-green: {spotifyGreen}"
         {...restProps}
     >
-        <div
-            class="mdc-typography--headline6"
-        >
-            {text}
-        </div>
-    </Button>
+        {text}
+    </a>
 </main>
 
 
 <style>
-    * :global(.spotify-button) {
+    .spotify-button {
         color: black;
-        background-color: var(--spotify-green); 
+        background-color: var(--spotify-green);
+        padding: 10px 20px;
+        border-radius: 30px;
+        text-decoration: none;
+        font-size: 1rem;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background-color 0.3s;
     }
 
-    * :global(.spotify-button):hover {
+    .spotify-button:hover {
         background-color: #26eb6b;
     }
 </style>

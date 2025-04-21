@@ -17,7 +17,7 @@
 <main>
     {#if open}
         <div
-            style="margin-top: 70px;"
+            style="margin-top: 100px;"
         >
             <iframe
                 style="
@@ -30,22 +30,23 @@
                 src={chooseSrc()}
                 frameborder="0"
                 allowfullscreen=""
-                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
-                loading="lazy"
+                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture loading=lazy;" 
             >
             </iframe>
-            <IconButton
+            <button
                 style="
                     bottom: 70px;
-                    margin-bottom: 1;
-                    margin-right: auto;
+                    left: 0px;
+                    padding: 10px;
                     position: fixed;
+                    border: none;
+                    background-color: inherit;
                 "
                 onclick={() => open = false}
                 class="material-icons"
             >
                 cancel
-            </IconButton>
+            </button>
         </div>
     {/if}
 </main>

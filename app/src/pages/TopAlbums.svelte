@@ -53,19 +53,16 @@
         <div
             class="display-inner-container"
         >
-            <LayoutGrid>
-                {#each albums as album, index}
-                    <Cell
-
-                        spanDevices={{phone: 6, tablet: 4, desktop: 2}}
-                    >
-                        <AlbumCard
-                            index={index + 1}
-                            album={album}
-                        />
-                    </Cell>
+            <div class="grid-container">
+                {#each albums as album, index (album[1].id)}
+                    <div class="grid-item">
+                        <div class="card-wrapper">
+                            <div class="card-index">{index + 1}</div>
+                            <AlbumCard album={album}/>
+                        </div>
+                    </div>
                 {/each}
-            </LayoutGrid>
+            </div>
         </div>
     </div>
 </main>

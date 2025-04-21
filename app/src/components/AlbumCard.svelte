@@ -4,7 +4,7 @@
     import SpotifyPlayButton from '../components/SpotifyPlayButton.svelte';
     import { getContext } from 'svelte';
 
-    let { index, album } = $props();
+    let { album } = $props();
     let spotifyPlayerContext = getContext("spotifyPlayerContext");
 
     const handleClickAlbum = () => {
@@ -20,34 +20,24 @@
     };
 
 </script>
+
+<!-- svelte-ignore a11y_click_events_have_key_events -->
+<!-- svelte-ignore a11y_no_static_element_interactions -->
 <main>
-    <Card
-        style="background-color: {mainColor};"
-    >
-        <PrimaryAction
-            onclick={handleClickAlbum}
-        >
-            <Media
-                class="card-media-img"
-                style="--url: url({album[1].image})"
-                aspectRatio="16x9"
-            />
-            <Content
-                class="mdc-typography--body2"
-            >
-                {`${index}. ${album[0]}`}
-            </Content>
-        </PrimaryAction>
-        <Actions>
-            <ActionButtons>
-                <IconButton
-                    class="material-icons"
-                    style="color: white;"
-                    onclick={handleClickPlayBtn}
-                >
-                    play_circle
-                </IconButton>
-            </ActionButtons>
-        </Actions>
-    </Card>
+    <div class="artist-album-card" onclick={handleClickAlbum}>
+        <img class="artist-album-image" src={album[1].image} alt={album[0]} />
+        <div class="artist-album-info">
+            <p class="artist-album-name">{`${album[0]}`}</p>
+        </div>
+        <div>
+          <button 
+            class="material-icons" 
+            style="background-color: inherit;" 
+            onclick={handleClickPlayBtn} 
+            title="Play"
+          >
+            play_circle
+          </button>
+        </div>
+    </div>
 </main>

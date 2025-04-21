@@ -2,7 +2,7 @@
     import { lighterMainColor, mainColor, spotifyGreen } from "../common";
     import { getArtist } from "../clients/SpotifyClient";
     import { navigate } from "svelte-routing";
-    import SpotifyPlayButton from '../components/SpotifyPlayButton.svelte';
+    import SpotifyPlayButton from "../components/SpotifyPlayButton.svelte";
 
     let { artistId } = $props();
     let artistInfo = $state(null);
@@ -18,62 +18,79 @@
         });
     });
 </script>
+
 <main>
-    <IconButton
-        style="top: 70px; left: 250px"
-        class="material-icons"
+    <button 
+        class="back-button material-icons" 
         onclick={() => window.history.back()}
     >
         arrow_back_ios
-    </IconButton>
+    </button>
+
     {#if artistInfo}
-        <div
-            class="artist-profile-display"
-        >
-            <Image
-                src={artistInfo.images[0].url}
-                style="border-radius: 50%; width: 25vw; height: 55vh;"
+        <div class="artist-profile-display">
+            <img 
+                src={artistInfo.images[0].url} 
+                alt="Artist Cover" 
+                class="artist-image"
             />
-            <Paper
-                style="background-color: {mainColor}; padding: 10px; margin: 10px; color: white;"
-            >
-                <div 
-                    class="mdc-typography--headline6"
-                >
+            <div class="info-card">
+                <div class="info-text">
                     {artistInfo.followers.total} followers
                 </div>
-            </Paper>
-            <div
-                style="display: flex; flex-direction: row;"
-            >
-                {#each artistInfo.genres as genre, index}
-                    <Paper
-                        style="background-color: {mainColor}; padding: 10px; margin: 10px; color: white;"
-                    >
-                        <div 
-                            class="mdc-typography--headline6"
-                        >
+            </div>
+            <div class="genres-container">
+                {#each artistInfo.genres as genre}
+                    <div class="info-card">
+                        <div class="info-text">
                             {genre}
                         </div>
-                    </Paper>
+                    </div>
                 {/each}
             </div>
+
             <SpotifyPlayButton 
+                href={artistInfo.external_urls.spotify} 
+                target="_blank"
                 text="Play on Spotify"
-                style="margin-top: 10px; --spotify-green: {spotifyGreen};"
-                href={artistInfo.external_urls.spotify}
-                target="_BLANK"
             />
         </div>
     {/if}
 </main>
+
 <style>
-    .artist-profile-display {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-        margin-left: 200px;
-    }
+
+.artist-profile-display {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin-left: 200px;
+}
+
+.artist-image {
+    border-radius: 50%;
+    width: 25vw;
+    height: 55vh;
+    object-fit: cover;
+}
+
+.info-card {
+    color: white;
+    margin: 5px;
+    padding: 5px;
+}
+
+.info-text {
+    font-size: 1.2rem;
+    text-align: center;
+}
+
+.genres-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 30px;
+}
 </style>

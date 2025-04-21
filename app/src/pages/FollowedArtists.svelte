@@ -1,6 +1,7 @@
 <script>
     import { getFollowedArtists, isFollowingArtists, unfollowArtists } from "../clients/SpotifyClient";
     import ArtistCardNoMui from "../components/ArtistCardNoMUI.svelte";
+    import { assignArtistId } from "../common";
 
     let artists = $state(null);
 
@@ -25,14 +26,6 @@
         fetchArtistsWrapper();
     });
 
-    const assignId = (artists, index) => {
-        if (artists.length - 1 === index) {
-            return "last-artist";
-        } else if (index === 0) {
-            return "first-artist";
-        }
-    };
-
     const handleClickFollowBtnParent = async (index) => {
         await unfollowArtists([artists[index].id]);
         artists.splice(index, 1);
@@ -52,7 +45,7 @@
                         <div class="card-wrapper">
                             <div class="card-index">{index + 1}</div>
                             <ArtistCardNoMui
-                                className={assignId(artists, index)}
+                                className={assignArtistId(artists, index)}
                                 artistInfo={artist}
                                 handleClickFollowBtnParent={() => handleClickFollowBtnParent(index)}
                             />
