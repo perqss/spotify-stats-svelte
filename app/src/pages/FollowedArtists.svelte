@@ -26,9 +26,12 @@
         fetchArtistsWrapper();
     });
 
-    const handleClickFollowBtnParent = async (index) => {
-        await unfollowArtists([artists[index].id]);
-        artists.splice(index, 1);
+    const handleClickFollowBtnParent = async (artist) => {
+        await unfollowArtists([artist.id]);
+        const index = artists.findIndex((a) => a.id === artist.id);
+        if (index !== -1) {
+            artists.splice(index, 1);
+        }
     };
     
 </script>
@@ -47,7 +50,7 @@
                             <ArtistCardNoMui
                                 className={assignArtistId(artists, index)}
                                 artistInfo={artist}
-                                handleClickFollowBtnParent={() => handleClickFollowBtnParent(index)}
+                                handleClickFollowBtnParent={handleClickFollowBtnParent}
                             />
                         </div>
                     </div>

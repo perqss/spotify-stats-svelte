@@ -1,4 +1,4 @@
-<script>
+<!-- <script>
     import { mainColor } from '../common';
     import { navigate } from 'svelte-routing';
     import SpotifyPlayButton from '../components/SpotifyPlayButton.svelte';
@@ -51,4 +51,4 @@
             </ActionButtons>
         </Actions>
     </Card>
-</main>
+</main> -->

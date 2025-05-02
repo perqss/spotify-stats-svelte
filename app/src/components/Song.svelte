@@ -4,7 +4,7 @@
     import { getContext } from 'svelte';
 
     let spotifyPlayerContext = getContext("spotifyPlayerContext");
-    let { className, songInfo, length, albumInfo } = $props();
+    let { className, songInfo, albumInfo, handleClickSaveBtnParent } = $props();
 
     const handleSecondary = () => {
         if (albumInfo) {
@@ -20,6 +20,11 @@
         spotifyPlayerContext.openBottomBar = true;
         spotifyPlayerContext.artistId = null;
         spotifyPlayerContext.albumId = null;
+    };
+
+    const handleClickSaveBtn = async (event) => {
+        event.stopPropagation();
+        await handleClickSaveBtnParent(songInfo);
     };
 
     const handleSongClick = () => {
@@ -44,7 +49,19 @@
         </div>
 
         <div class="meta-controls">
-            <button class="material-icons play-button" onclick={handleClickPlayBtn}>
+            <button 
+                class="material-icons"
+                style="background-color: inherit; color: {songInfo.isSaved ? 'yellow' : 'white'}"
+                onclick={handleClickSaveBtn}
+                title={songInfo.isSaved ? "Remove from Library" : "Add to Library"}
+            > 
+                bookmark_add
+            </button>
+            <button 
+                class="material-icons play-button" 
+                onclick={handleClickPlayBtn}
+                title="Play"
+            >
                 play_circle
             </button>
             <div class="duration">{durationInHrMinSec(songInfo.duration_ms)}</div>

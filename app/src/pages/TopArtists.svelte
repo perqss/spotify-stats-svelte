@@ -7,14 +7,14 @@
     let artists = $state(null);
     let { artistTerm } = $props();
 
-    const fetchTopArtists = async (term) => {
-        const response = await getTopArtists(term);
+    const fetchTopArtists = async () => {
+        const response = await getTopArtists(artistTerm);
         return response.items;
     };
 
     $effect(() => {
         const fetchArtistsWrapper = async () => {
-            const topArtists = await fetchTopArtists(artistTerm);
+            const topArtists = await fetchTopArtists();
             const artistIds = topArtists.map((artist) => artist.id);
             const followed = await isFollowingArtists(artistIds);
             artists = topArtists.map((artist, index) => {
@@ -28,13 +28,19 @@
         fetchArtistsWrapper();
     });
 
-    const handleClickFollowBtnParent = async (index) => {
-      if (!artists[index].isFollowing) {
-        await followArtists([artists[index].id]);
+    const handleClickFollowBtnParent = async (artist) => {
+    //   if (!artists[index].isFollowing) {
+    //     await followArtists([artists[index].id]);
+    //   } else {
+    //     await unfollowArtists([artists[index].id]);
+    //   }
+    //   artists[index].isFollowing = !artists[index].isFollowing;
+    if (!artist.isFollowing) {
+        await followArtists([artist.id]);
       } else {
-        await unfollowArtists([artists[index].id]);
+        await unfollowArtists([artist.id]);
       }
-      artists[index].isFollowing = !artists[index].isFollowing;
+      artist.isFollowing = !artist.isFollowing;
     };
 
 </script>
@@ -53,7 +59,7 @@
                             <ArtistCardNoMui
                                 className={assignArtistId(artists, index)}
                                 artistInfo={artist}
-                                handleClickFollowBtnParent={() => handleClickFollowBtnParent(index)}
+                                handleClickFollowBtnParent={handleClickFollowBtnParent}
                             />
                         </div>
                     </div>

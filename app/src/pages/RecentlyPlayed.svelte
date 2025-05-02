@@ -28,7 +28,6 @@
                     {#each songsInfo as songInfo, index}
                         <Song
                             songInfo={songInfo.track}
-                            index={index + 1}
                             length={songsInfo.length}
                         />
                     {/each}

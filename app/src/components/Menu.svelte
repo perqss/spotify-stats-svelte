@@ -8,9 +8,9 @@
     let { componentIndex, term = $bindable() } = $props();
     let selectedMenu = $state(componentIndex);
     let selectedSubMenu = $state('All Time');
-    const menuItems = ['Top Artists', 'Top Songs', 'Top Albums', 'Recently Played', 'Music Taste', 'Followed Artists'];
+    const menuItems = ['Top Artists', 'Top Songs', 'Top Albums', 'Recently Played', 'Music Taste', 'Followed Artists', 'Saved Songs'];
     const subMenuItems = ['All Time', 'Last 6 Months', 'Last 4 Weeks'];
-    const menuIcons = ['mic', 'music_note', 'album', 'history', 'query_stats', 'favorite_border'];
+    const menuIcons = ['mic', 'music_note', 'album', 'history', 'query_stats', 'favorite_border', 'bookmarks'];
 
     const handleClickMenuItem = (index) => {
         selectedMenu = index;
@@ -39,6 +39,9 @@
                 break;
             case 5:
                 navigate('/followed-artists');
+                break;
+            case 6:
+                navigate('/saved-songs');
                 break;
         }
     });

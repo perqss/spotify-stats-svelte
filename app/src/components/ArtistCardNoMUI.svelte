@@ -21,8 +21,8 @@
 
     const handleClickFollowBtn = async (event) => {
       event.stopPropagation();
-      await handleClickFollowBtnParent();
-    }
+      await handleClickFollowBtnParent(artistInfo);
+    };
 
 </script>
 <!-- svelte-ignore a11y_click_events_have_key_events -->
@@ -46,7 +46,7 @@
             class="material-icons follow-button" 
             style="background-color: inherit; color: {artistInfo.isFollowing ? spotifyGreen : 'white'}" 
             onclick={handleClickFollowBtn}
-            title="Follow"
+            title="{artistInfo.isFollowing ? 'Unfollow' : 'Follow'}"
           >
             favorite
           </button>

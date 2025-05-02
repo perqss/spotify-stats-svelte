@@ -5,7 +5,7 @@
   //import { Query } from "@mateothegreat/svelte5-router";
   import { navigate } from 'svelte-routing';
 
-  let loginUrl = "";
+  let loginUrl = $state("");
   onMount(() => {
     const code = getCodeFromUrl();
 

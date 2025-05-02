@@ -1,5 +1,4 @@
 <script>
-    import { lighterMainColor, mainColor, spotifyGreen } from "../common";
     import { getArtist } from "../clients/SpotifyClient";
     import { navigate } from "svelte-routing";
     import SpotifyPlayButton from "../components/SpotifyPlayButton.svelte";
@@ -13,50 +12,46 @@
     };
 
     $effect(() => {
-        fetchArtist().then(response => {
-            artistInfo = response;
-        });
+        fetchArtist().then(response => artistInfo = response);
     });
 </script>
 
-<main>
-    <button 
-        class="back-button material-icons" 
-        onclick={() => window.history.back()}
-    >
-        arrow_back_ios
-    </button>
+<button 
+    class="back-button material-icons" 
+    onclick={() => window.history.back()}
+>
+    arrow_back_ios
+</button>
 
-    {#if artistInfo}
-        <div class="artist-profile-display">
-            <img 
-                src={artistInfo.images[0].url} 
-                alt="Artist Cover" 
-                class="artist-image"
-            />
-            <div class="info-card">
-                <div class="info-text">
-                    {artistInfo.followers.total} followers
-                </div>
+{#if artistInfo}
+    <div class="artist-profile-display">
+        <img 
+            src={artistInfo.images[0].url} 
+            alt="Artist Cover" 
+            class="artist-image"
+        />
+        <div class="info-card">
+            <div class="info-text">
+                {artistInfo.followers.total} followers
             </div>
-            <div class="genres-container">
-                {#each artistInfo.genres as genre}
-                    <div class="info-card">
-                        <div class="info-text">
-                            {genre}
-                        </div>
-                    </div>
-                {/each}
-            </div>
-
-            <SpotifyPlayButton 
-                href={artistInfo.external_urls.spotify} 
-                target="_blank"
-                text="Play on Spotify"
-            />
         </div>
-    {/if}
-</main>
+        <div class="genres-container">
+            {#each artistInfo.genres as genre}
+                <div class="info-card">
+                    <div class="info-text">
+                        {genre}
+                    </div>
+                </div>
+            {/each}
+        </div>
+
+        <SpotifyPlayButton 
+            href={artistInfo.external_urls.spotify} 
+            target="_blank"
+            text="Play on Spotify"
+        />
+    </div>
+{/if}
 
 <style>
 

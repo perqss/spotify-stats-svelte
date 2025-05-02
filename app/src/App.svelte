@@ -11,6 +11,7 @@
     import AlbumInfo from "./pages/AlbumInfo.svelte";
     import BottomBar from "./components/BottomBar.svelte";
     import FollowedArtists from "./pages/FollowedArtists.svelte";
+    import SavedSongs from "./pages/SavedSongs.svelte";
     import { setContext } from "svelte";
 
     let artistTerm = $state("long_term");
@@ -133,6 +134,16 @@
                     componentIndex={5}
                 />
                 <FollowedArtists/>
+            </div>
+        </Route>
+        <Route
+            path='/saved-songs'
+        >
+            <div>
+                <Menu
+                    componentIndex={6}
+                />
+                <SavedSongs/>
             </div>
         </Route>
     </Router>

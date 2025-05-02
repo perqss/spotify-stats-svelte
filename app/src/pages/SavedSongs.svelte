@@ -1,39 +1,37 @@
 <script>
-    import { getTopSongs, areTracksSaved, saveTracks, removeSavedTracks } from "../clients/SpotifyClient";
+    import { getSavedTracks, removeSavedTracks, areTracksSaved } from "../clients/SpotifyClient";
     import Song from "../components/Song.svelte";
     import { assignSongId } from "../common";
 
-    let { songTerm } = $props();
     let songs = $state(null);
 
-    const fetchTopSongs = async () => {
-        const response = await getTopSongs(songTerm);
+    const fetchSavedTracks = async () => {
+        const response = await getSavedTracks();
         return response.items;
     };
 
     $effect(() => {
-        const fetchSongsWrapper = async () => {
-            const topSongs = await fetchTopSongs();
-            const trackIds = topSongs.map((track) => track.id);
+        const fetchSavedTracksWrapper = async () => {
+            const savedTracks = await fetchSavedTracks();
+            const trackIds = savedTracks.map((track) => track.track.id);
             const saved = await areTracksSaved(trackIds);
-            songs = topSongs.map((item, index) => {
+            songs = savedTracks.map((item, index) => {
                 return {
-                    ...item,
+                    ...item.track,
                     isSaved: saved[index],
                 };
             });
         };
 
-        fetchSongsWrapper();
-    });
+        fetchSavedTracksWrapper();
+    })
 
     const handleClickSaveBtnParent = async (song) => {
-        if (!songs.isSaved) {
-            await saveTracks([song.id]);
-        } else {
-            await removeSavedTracks([song.id]);
+        await removeSavedTracks([song.id]);
+        const index = songs.findIndex((s) => s.id === song.id);
+        if (index !== -1) {
+            songs.splice(index, 1);
         }
-        song.isSaved = !song.isSaved;
     };
 
 </script>
@@ -49,6 +47,7 @@
                 <Song
                     className={assignSongId(songs, index)}
                     songInfo={song}
+                    length={songs.length}
                     handleClickSaveBtnParent={handleClickSaveBtnParent}
                 />
             {/each}

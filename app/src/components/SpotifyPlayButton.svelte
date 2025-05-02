@@ -5,16 +5,13 @@
 
 </script>
 
-<main>
-    <a 
-        class="spotify-button"
-        style="--spotify-green: {spotifyGreen}"
-        {...restProps}
-    >
-        {text}
-    </a>
-</main>
-
+<a 
+    class="spotify-button"
+    style="--spotify-green: {spotifyGreen}"
+    {...restProps}
+>
+    {text}
+</a>
 
 <style>
     .spotify-button {
