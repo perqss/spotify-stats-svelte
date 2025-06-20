@@ -1,6 +1,6 @@
 <script>
     import Login from "./pages/Login.svelte";
-    import { Router, Link, Route } from "svelte-routing";
+    import { Router, Route } from "svelte-routing";
     import TopArtists from "./pages/TopArtists.svelte";
     import Menu from "./components/Menu.svelte";
     import ArtistProfile from "./pages/ArtistProfile.svelte";
@@ -13,6 +13,7 @@
     import FollowedArtists from "./pages/FollowedArtists.svelte";
     import SavedSongs from "./pages/SavedSongs.svelte";
     import { setContext } from "svelte";
+    import TopArtistsAndArtistCard from "./components/TopArtistsAndArtistCard.svelte";
 
     let artistTerm = $state("long_term");
     let songTerm = $state("long_term");
@@ -49,6 +50,9 @@
                 <TopArtists 
                     artistTerm={artistTerm}
                 />
+                <!-- <TopArtistsAndArtistCard
+                    artistTerm={artistTerm}
+                /> -->
             </div>
         </Route>
         <Route

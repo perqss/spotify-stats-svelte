@@ -27,7 +27,7 @@
 </script>
 <!-- svelte-ignore a11y_click_events_have_key_events -->
 <!-- svelte-ignore a11y_no_static_element_interactions -->
-<div class={className}>
+<div class={`${className} artist-card`}>
     <div class="artist-album-card" onclick={handleClickArtist}>
         <img class="artist-album-image" src={artistInfo.images[0].url} alt={artistInfo.name} />
         <div class="artist-album-info">

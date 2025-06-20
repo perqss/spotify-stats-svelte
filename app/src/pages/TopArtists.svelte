@@ -1,10 +1,10 @@
 <script>
     import { getTopArtists, isFollowingArtists, followArtists, unfollowArtists } from "../clients/SpotifyClient";
-    //import ArtistCard from "../components/ArtistCard.svelte";
     import ArtistCardNoMui from "../components/ArtistCardNoMUI.svelte";
     import { assignArtistId } from "../common";
+    import { onMount } from "svelte";
 
-    let artists = $state(null);
+    let artists = $state.raw([]); // raw gwarantuje mniejsze zużycie pamięci
     let { artistTerm } = $props();
 
     const fetchTopArtists = async () => {
@@ -29,7 +29,7 @@
     });
 
     const handleClickFollowBtnParent = async (artist) => {
-    //   if (!artists[index].isFollowing) {
+    //   if (!artists[index].isFollowing) {p
     //     await followArtists([artists[index].id]);
     //   } else {
     //     await unfollowArtists([artists[index].id]);
