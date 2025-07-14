@@ -43,7 +43,7 @@
             play_circle
           </button>
           <button 
-            class="material-icons follow-button" 
+            class={`material-icons follow-button ${artistInfo.isFollowing ? 'followed' : 'not-followed'}`} 
             style="background-color: inherit; color: {artistInfo.isFollowing ? spotifyGreen : 'white'}" 
             onclick={handleClickFollowBtn}
             title="{artistInfo.isFollowing ? 'Unfollow' : 'Follow'}"

@@ -40,7 +40,8 @@
       } else {
         await unfollowArtists([artist.id]);
       }
-      artist.isFollowing = !artist.isFollowing;
+      //artist.isFollowing = !artist.isFollowing;
+      artists = artists.map((a) => a.id === artist.id ? { ...a, isFollowing: !artist.isFollowing } : a);
     };
 
 </script>

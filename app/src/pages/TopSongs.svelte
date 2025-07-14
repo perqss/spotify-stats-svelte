@@ -4,7 +4,7 @@
     import { assignSongId } from "../common";
 
     let { songTerm } = $props();
-    let songs = $state(null);
+    let songs = $state([]);
 
     const fetchTopSongs = async () => {
         const response = await getTopSongs(songTerm);
@@ -34,6 +34,7 @@
             await removeSavedTracks([song.id]);
         }
         song.isSaved = !song.isSaved;
+        //songs = songs.map((s) => s.id === song.id ? { ...s, isSaved: !song.isSaved } : s);
     };
 
 </script>

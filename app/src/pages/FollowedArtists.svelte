@@ -3,8 +3,8 @@
     import ArtistCardNoMui from "../components/ArtistCardNoMUI.svelte";
     import { assignArtistId } from "../common";
 
-    //let artists = $state([]);
-    let artists = $state.raw([]);
+    let artists = $state([]);
+    // let artists = $state.raw([]);
 
     const fetchFollowedArtists = async () => {
         const response = await getFollowedArtists();
@@ -29,12 +29,12 @@
 
     const handleClickFollowBtnParent = async (artist) => {
         await unfollowArtists([artist.id]);
-        // const index = artists.findIndex((a) => a.id === artist.id);
-        // if (index !== -1) {
-        //     artists.splice(index, 1);
-        //     artists = artists;
-        // }
-        artists = artists.filter((a) => a.id !== artist.id);
+        const index = artists.findIndex((a) => a.id === artist.id);
+        if (index !== -1) {
+            artists.splice(index, 1);
+            artists = artists;
+        }
+        //artists = artists.filter((a) => a.id !== artist.id);
     };
     
 </script>

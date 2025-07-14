@@ -2,6 +2,7 @@
     import { navigate } from 'svelte-routing';
     import { grey, parseArtists, durationInHrMinSec } from '../common';
     import { getContext } from 'svelte';
+    import Waveform from './Waveform.svelte';
 
     let spotifyPlayerContext = getContext("spotifyPlayerContext");
     let { className, songInfo, albumInfo, handleClickSaveBtnParent } = $props();
@@ -34,7 +35,7 @@
 </script>
 <!-- svelte-ignore a11y_click_events_have_key_events -->
 <!-- svelte-ignore a11y_no_static_element_interactions -->
-<div class={className}>
+<div class={`${className} song-card`}>
     <div class="song-item" onclick={handleSongClick}>
         <div class="song-left">
             <img
@@ -50,7 +51,7 @@
 
         <div class="meta-controls">
             <button 
-                class="material-icons"
+                class={`material-icons save-button ${songInfo.isSaved ? 'saved' : 'not-saved'}`}
                 style="background-color: inherit; color: {songInfo.isSaved ? 'yellow' : 'white'}"
                 onclick={handleClickSaveBtn}
                 title={songInfo.isSaved ? "Remove from Library" : "Add to Library"}
@@ -67,6 +68,7 @@
             <div class="duration">{durationInHrMinSec(songInfo.duration_ms)}</div>
         </div>
     </div>
+    <Waveform songId={songInfo.id}/>
 </div>
 
 <style>

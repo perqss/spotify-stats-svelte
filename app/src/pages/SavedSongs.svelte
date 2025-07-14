@@ -3,7 +3,7 @@
     import Song from "../components/Song.svelte";
     import { assignSongId } from "../common";
 
-    let songs = $state(null);
+    let songs = $state.raw([]);
 
     const fetchSavedTracks = async () => {
         const response = await getSavedTracks();
@@ -28,10 +28,11 @@
 
     const handleClickSaveBtnParent = async (song) => {
         await removeSavedTracks([song.id]);
-        const index = songs.findIndex((s) => s.id === song.id);
-        if (index !== -1) {
-            songs.splice(index, 1);
-        }
+        // const index = songs.findIndex((s) => s.id === song.id);
+        // if (index !== -1) {
+        //     songs.splice(index, 1);
+        // }
+        songs = songs.filter((s) => s.id !== song.id);
     };
 
 </script>
@@ -47,7 +48,6 @@
                 <Song
                     className={assignSongId(songs, index)}
                     songInfo={song}
-                    length={songs.length}
                     handleClickSaveBtnParent={handleClickSaveBtnParent}
                 />
             {/each}
