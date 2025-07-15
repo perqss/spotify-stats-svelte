@@ -4,7 +4,7 @@
     import { getContext } from 'svelte';
     import Waveform from './Waveform.svelte';
 
-    let spotifyPlayerContext = getContext("spotifyPlayerContext");
+    const context = getContext("PlaybackAPIContext");
     let { className, songInfo, albumInfo, handleClickSaveBtnParent } = $props();
 
     const handleSecondary = () => {
@@ -17,10 +17,7 @@
 
     const handleClickPlayBtn = (event) => {
         event.stopPropagation();
-        spotifyPlayerContext.songId = songInfo.id;
-        spotifyPlayerContext.openBottomBar = true;
-        spotifyPlayerContext.artistId = null;
-        spotifyPlayerContext.albumId = null;
+        context.playSong(songInfo.id);
     };
 
     const handleClickSaveBtn = async (event) => {

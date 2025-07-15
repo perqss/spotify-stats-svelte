@@ -5,7 +5,7 @@
     import { getContext } from 'svelte';
 
     let { album } = $props();
-    let spotifyPlayerContext = getContext("spotifyPlayerContext");
+    const context = getContext("PlaybackAPIContext");
 
     const handleClickAlbum = () => {
         navigate(`/album/${album[1].id}`);
@@ -13,10 +13,7 @@
 
     const handleClickPlayBtn = (event) => {
         event.stopPropagation();
-        spotifyPlayerContext.albumId = album[1].id;
-        spotifyPlayerContext.openBottomBar = true;
-        spotifyPlayerContext.artistId = null;
-        spotifyPlayerContext.songId = null;
+        context.playAlbum(album[1].id);
     };
 
 </script>

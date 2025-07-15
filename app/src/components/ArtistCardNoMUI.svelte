@@ -5,7 +5,7 @@
     import { followArtists, unfollowArtists } from "../clients/SpotifyClient";
 
     let { className, artistInfo, handleClickFollowBtnParent } = $props();
-    let spotifyPlayerContext = getContext("spotifyPlayerContext");
+    const context = getContext("PlaybackAPIContext");
 
     const handleClickArtist = () => {
         navigate(`/artist/${artistInfo.id}`);
@@ -13,10 +13,7 @@
 
     const handleClickPlayBtn = (event) => {
         event.stopPropagation();
-        spotifyPlayerContext.artistId = artistInfo.id; 
-        spotifyPlayerContext.openBottomBar = true;
-        spotifyPlayerContext.albumId = null;
-        spotifyPlayerContext.songId = null;
+        context.playArtist(artistInfo.id);
     };
 
     const handleClickFollowBtn = async (event) => {

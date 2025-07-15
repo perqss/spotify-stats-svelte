@@ -1,21 +1,22 @@
 <script>
+    import { getContext } from "svelte";
 
-    let { songId, artistId, albumId, open = $bindable() } = $props();
+    const context = getContext("PlaybackStateContext");
     
     const chooseSrc = () => {
-        if (songId) {
-            return `https://open.spotify.com/embed/track/${songId}?utm_source=generator`;
-        } else if (artistId) {
-            return `https://open.spotify.com/embed/artist/${artistId}?utm_source=generator`;
-        } else if (albumId) {
-            return `https://open.spotify.com/embed/album/${albumId}?utm_source=generator`;
+        if (context.songId) {
+            return `https://open.spotify.com/embed/track/${context.songId}?utm_source=generator`;
+        } else if (context.artistId) {
+            return `https://open.spotify.com/embed/artist/${context.artistId}?utm_source=generator`;
+        } else if (context.albumId) {
+            return `https://open.spotify.com/embed/album/${context.albumId}?utm_source=generator`;
         }
         return '';
     };
     
 </script>
 <main>
-    {#if open}
+    {#if context.open}
         <div
             style="margin-top: 100px;"
         >
@@ -26,11 +27,12 @@
                     border-radius: 12px;
                     bottom: -70px;
                 "
-                title="Spotify Player"
                 src={chooseSrc()}
-                frameborder="0"
-                allowfullscreen=""
-                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture loading=lazy;" 
+                frameBorder="0" 
+                allowFullScreen="" 
+                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+                loading="lazy"
+                title="Spotify Player"
             >
             </iframe>
             <button
@@ -42,7 +44,7 @@
                     border: none;
                     background-color: inherit;
                 "
-                onclick={() => open = false}
+                onclick={() => context.open = false}
                 class="material-icons"
             >
                 cancel
