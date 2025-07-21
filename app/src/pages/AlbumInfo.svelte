@@ -1,9 +1,9 @@
 <script>
     import SpotifyPlayButton from "../components/SpotifyPlayButton.svelte";
-    import { navigate } from "svelte-routing";
     import Song from "../components/Song.svelte";
     import { getReleaseDateYear, parseArtists } from "../common";
     import { getAlbum, areTracksSaved, saveTracks, removeSavedTracks } from "../clients/SpotifyClient";
+    import { onMount } from "svelte";
 
     const { albumId } = $props();
     let albumInfo = $state(null);
@@ -13,7 +13,7 @@
         return response;
     };
 
-    $effect(() => {
+    onMount(() => {
         const fetchAlbumWrapper = async () => {
             const album = await fetchAlbum();
             const songIds = album.tracks.items.map(track => track.id);
@@ -34,13 +34,13 @@
         fetchAlbumWrapper();
     });
 
-    const handleClickSaveBtnParent = async (index) => {
-        if (!albumInfo.tracks.items[index].isSaved) {
-            await saveTracks([albumInfo.tracks.items[index].id]);
+    const handleClickSaveBtnParent = async (song) => {
+        if (!song.isSaved) {
+            await saveTracks([song.id]);
         } else {
-            await removeSavedTracks([albumInfo.tracks.items[index].id]);
+            await removeSavedTracks([song.id]);
         }
-        albumInfo.tracks.items[index].isSaved = !albumInfo.tracks.items[index].isSaved;
+        song.isSaved = !song.isSaved;
     };
 
 </script>
@@ -97,7 +97,7 @@
             <Song
                 albumInfo={albumInfo}
                 songInfo={song}
-                handleClickSaveBtnParent={() => handleClickSaveBtnParent(index)}
+                handleClickSaveBtnParent={handleClickSaveBtnParent}
             />
         {/each}
     </div>

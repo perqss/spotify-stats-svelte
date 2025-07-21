@@ -2,6 +2,7 @@
     import { getReleaseDateYear, parseArtists } from '../common';
     import { getTrack } from '../clients/SpotifyClient';
     import SpotifyPlayButton from '../components/SpotifyPlayButton.svelte';
+    import { onMount } from 'svelte';
 
     let { songId } = $props();
     let songInfo = $state(null);
@@ -11,7 +12,7 @@
         return response;
     };
 
-    $effect(() => {
+    onMount(() => {
         fetchSong().then(response => songInfo = response);
     });
 </script>
@@ -54,9 +55,7 @@
     </div>
 {/if}
 
-
 <style>
-
 .song-display {
     display: flex;
     justify-content: center;

@@ -2,6 +2,7 @@
     import { getSavedTracks, removeSavedTracks, areTracksSaved } from "../clients/SpotifyClient";
     import Song from "../components/Song.svelte";
     import { assignSongId } from "../common";
+    import { onMount } from "svelte";
 
     let songs = $state.raw([]);
 
@@ -10,7 +11,7 @@
         return response.items;
     };
 
-    $effect(() => {
+    onMount(() => {
         const fetchSavedTracksWrapper = async () => {
             const savedTracks = await fetchSavedTracks();
             const trackIds = savedTracks.map((track) => track.track.id);
@@ -28,11 +29,7 @@
 
     const handleClickSaveBtnParent = async (song) => {
         await removeSavedTracks([song.id]);
-        // const index = songs.findIndex((s) => s.id === song.id);
-        // if (index !== -1) {
-        //     songs.splice(index, 1);
-        // }
-        songs = songs.filter((s) => s.id !== song.id);
+        songs = songs.filter(s => s.id !== song.id);
     };
 
 </script>

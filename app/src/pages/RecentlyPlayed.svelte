@@ -2,18 +2,19 @@
     import { getRecentlyPlayed, areTracksSaved, saveTracks, removeSavedTracks } from "../clients/SpotifyClient";
     import Song from "../components/Song.svelte";
     import { assignSongId } from "../common";
+    import { onMount } from "svelte";
 
-    let songs = $state(null);
+    let songs = $state([]);
 
     const fetchRecentlyPlayed = async () => {
         const response = await getRecentlyPlayed();
         return response.items;
     };
 
-    $effect(() => {
+    onMount(() => {
         const fetchSongsWrapper = async () => {
             const recentlyPlayedSongs = await fetchRecentlyPlayed();
-            const trackIds = recentlyPlayedSongs.map(({ context, track }) => track.id);
+            const trackIds = recentlyPlayedSongs.map(({ _, track }) => track.id);
             const saved = await areTracksSaved(trackIds);
             songs = recentlyPlayedSongs.map((item, index) => {
                 return {

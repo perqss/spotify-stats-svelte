@@ -2,7 +2,6 @@
     import { navigate } from "svelte-routing";
     import { getContext } from 'svelte';
     import { spotifyGreen } from "../common";
-    import { followArtists, unfollowArtists } from "../clients/SpotifyClient";
 
     let { className, artistInfo, handleClickFollowBtnParent } = $props();
     const context = getContext("PlaybackAPIContext");
@@ -20,7 +19,6 @@
       event.stopPropagation();
       await handleClickFollowBtnParent(artistInfo);
     };
-
 </script>
 <!-- svelte-ignore a11y_click_events_have_key_events -->
 <!-- svelte-ignore a11y_no_static_element_interactions -->
@@ -32,8 +30,7 @@
         </div>
         <div>
           <button 
-            class="material-icons" 
-            style="background-color: inherit;" 
+            class="material-icons play-button" 
             onclick={handleClickPlayBtn} 
             title="Play"
           >

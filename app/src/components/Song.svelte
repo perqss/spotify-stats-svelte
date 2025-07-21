@@ -69,9 +69,7 @@
 </div>
 
 <style>
-.play-button {
-    background-color: inherit;
-}
+
 .song-item {
     display: flex;
     justify-content: space-between;

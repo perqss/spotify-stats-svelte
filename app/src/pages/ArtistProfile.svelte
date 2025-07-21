@@ -1,7 +1,7 @@
 <script>
     import { getArtist } from "../clients/SpotifyClient";
-    import { navigate } from "svelte-routing";
     import SpotifyPlayButton from "../components/SpotifyPlayButton.svelte";
+    import { onMount } from "svelte";
 
     let { artistId } = $props();
     let artistInfo = $state(null);
@@ -11,7 +11,7 @@
         return response;
     };
 
-    $effect(() => {
+    onMount(() => {
         fetchArtist().then(response => artistInfo = response);
     });
 </script>

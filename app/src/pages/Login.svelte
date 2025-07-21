@@ -1,11 +1,11 @@
 <script>
-  import logo from '../assets/svelte.svg'
-  import { spotifyGreen, getLoginUrl, getCodeFromUrl, getTokens } from '../common';
+  import logo from '../assets/svelte.svg?inline'
+  import { getLoginUrl, getCodeFromUrl, getTokens } from '../common';
   import { onMount } from 'svelte';
-  //import { Query } from "@mateothegreat/svelte5-router";
   import { navigate } from 'svelte-routing';
 
   let loginUrl = $state("");
+
   onMount(() => {
     const code = getCodeFromUrl();
 

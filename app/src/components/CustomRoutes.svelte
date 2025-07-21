@@ -43,7 +43,6 @@
     >
         <div>
             <Menu
-                bind:term={artistTerm}
                 closeSubMenu
             />
             <ArtistProfile
@@ -70,7 +69,6 @@
     >
         <div>
             <Menu
-                bind:term={songTerm}
                 closeSubMenu
             />
             <SongInfo
@@ -107,7 +105,6 @@
     >
         <div>
             <Menu
-                bind:term={albumTerm}
                 closeSubMenu
             />
             <AlbumInfo

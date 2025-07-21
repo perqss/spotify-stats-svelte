@@ -1,10 +1,9 @@
 <script>
     import { getTopArtists, isFollowingArtists, followArtists, unfollowArtists } from "../clients/SpotifyClient";
-    import ArtistCardNoMui from "../components/ArtistCardNoMUI.svelte";
+    import ArtistCard from "../components/ArtistCard.svelte";
     import { assignArtistId } from "../common";
-    import { onMount } from "svelte";
 
-    let artists = $state.raw([]); // raw gwarantuje mniejsze zużycie pamięci
+    let artists = $state([]);
     let { artistTerm } = $props();
 
     const fetchTopArtists = async () => {
@@ -29,43 +28,30 @@
     });
 
     const handleClickFollowBtnParent = async (artist) => {
-    //   if (!artists[index].isFollowing) {p
-    //     await followArtists([artists[index].id]);
-    //   } else {
-    //     await unfollowArtists([artists[index].id]);
-    //   }
-    //   artists[index].isFollowing = !artists[index].isFollowing;
-    if (!artist.isFollowing) {
-        await followArtists([artist.id]);
-      } else {
-        await unfollowArtists([artist.id]);
-      }
-      //artist.isFollowing = !artist.isFollowing;
-      artists = artists.map((a) => a.id === artist.id ? { ...a, isFollowing: !artist.isFollowing } : a);
+        if (!artist.isFollowing) {
+            await followArtists([artist.id]);
+        } else {
+            await unfollowArtists([artist.id]);
+        }
+        artist.isFollowing = !artist.isFollowing;
     };
 
 </script>
-<div>
-    <div
-        class="display-outer-container"
-    >
-        <div
-            class="display-inner-container"
-        >
-            <div class="grid-container">
-                {#each artists as artist, index (artist.id)}
-                    <div class="grid-item">
-                        <div class="card-wrapper">
-                            <div class="card-index">{index + 1}</div>
-                            <ArtistCardNoMui
-                                className={assignArtistId(artists, index)}
-                                artistInfo={artist}
-                                handleClickFollowBtnParent={handleClickFollowBtnParent}
-                            />
-                        </div>
+<div class="display-outer-container">
+    <div class="display-inner-container">
+        <div class="grid-container">
+            {#each artists as artist, index (artist.id)}
+                <div class="grid-item">
+                    <div class="card-wrapper">
+                        <div class="card-index">{index + 1}</div>
+                        <ArtistCard
+                            className={assignArtistId(artists, index)}
+                            artistInfo={artist}
+                            handleClickFollowBtnParent={handleClickFollowBtnParent}
+                        />
                     </div>
-                {/each}
-            </div>
+                </div>
+            {/each}
         </div>
     </div>
 </div>

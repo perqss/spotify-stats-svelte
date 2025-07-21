@@ -35,34 +35,27 @@
             })
             const entries = Object.entries(result);
             entries.sort((a, b) => {
-                // Sort by count in decreasing order
                 if (b[1].count !== a[1].count) {
                 return b[1].count - a[1].count;
                 }
-                // If count is equal, sort by indexSum in decreasing order
                 return a[1].indexSum - b[1].indexSum;
             });
             albums = entries;
         }
     });
 </script>
-<main>
-    <div
-        class="display-outer-container"
-    >
-        <div
-            class="display-inner-container"
-        >
-            <div class="grid-container">
-                {#each albums as album, index (album[1].id)}
-                    <div class="grid-item">
-                        <div class="card-wrapper">
-                            <div class="card-index">{index + 1}</div>
-                            <AlbumCard album={album}/>
-                        </div>
+
+<div class="display-outer-container">
+    <div class="display-inner-container">
+        <div class="grid-container">
+            {#each albums as album, index (album[1].id)}
+                <div class="grid-item">
+                    <div class="card-wrapper">
+                        <div class="card-index">{index + 1}</div>
+                        <AlbumCard album={album}/>
                     </div>
-                {/each}
-            </div>
+                </div>
+            {/each}
         </div>
     </div>
-</main>
+</div>

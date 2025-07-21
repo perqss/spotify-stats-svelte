@@ -1,7 +1,5 @@
 <script>
-    import { mainColor } from '../common';
     import { navigate } from 'svelte-routing';
-    import SpotifyPlayButton from '../components/SpotifyPlayButton.svelte';
     import { getContext } from 'svelte';
 
     let { album } = $props();
@@ -20,7 +18,6 @@
 
 <!-- svelte-ignore a11y_click_events_have_key_events -->
 <!-- svelte-ignore a11y_no_static_element_interactions -->
-
 <div class="artist-album-card" onclick={handleClickAlbum}>
     <img class="artist-album-image" src={album[1].image} alt={album[0]} />
     <div class="artist-album-info">

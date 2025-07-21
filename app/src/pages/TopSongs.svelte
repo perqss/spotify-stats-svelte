@@ -34,16 +34,11 @@
             await removeSavedTracks([song.id]);
         }
         song.isSaved = !song.isSaved;
-        //songs = songs.map((s) => s.id === song.id ? { ...s, isSaved: !song.isSaved } : s);
     };
 
 </script>
-<div
-    class="display-outer-container"
->
-    <div
-        class="display-inner-container"
-    >
+<div class="display-outer-container">
+    <div class="display-inner-container">
         <div class="song-container">
             {#each songs as song, index (song.id)}
                 <div>{index + 1}.</div>
@@ -53,6 +48,6 @@
                     handleClickSaveBtnParent={handleClickSaveBtnParent}
                 />
             {/each}
-    </div>
+        </div>
     </div>
 </div>
